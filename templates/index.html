@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhotoMentor 2.0 — Photography Learning Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">PhotoMentor 2.0</h1>
+            <nav class="nav">
+                <button class="nav-link" data-section="home">Home</button>
+                <button class="nav-link" data-section="library">Learning Library</button>
+                <button class="nav-link" data-section="composition">Composition Academy</button>
+                <button class="nav-link" data-section="simulator">Exposure Simulator</button>
+                <button class="nav-link" data-section="advisor">Settings Advisor</button>
+                <button class="nav-link" data-section="quiz">Quiz</button>
+                <button class="nav-link" data-section="progress">Progress</button>
+                <button class="nav-link" data-section="journal">Photo Journal</button>
+                <button class="nav-link" data-section="challenges">Challenges</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="container">
+                <div class="hero">
+                    <p class="hero-label">WELCOME TO PHOTOMENTOR</p>
+                    <h2 class="hero-title">Master the art of <span class="highlight">photography</span>.</h2>
+                    <p class="hero-text">
+                        Learn camera fundamentals, composition principles, and lighting techniques. 
+                        Practice with interactive tools and track your progress as you develop your photographer's eye.
+                    </p>
+                    <button class="btn-primary" onclick="navigateTo('library')">Start Learning</button>
+                </div>
+
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>30 Photography Lessons</h3>
+                        <p>From aperture to white balance, master every fundamental concept with clear explanations and practical examples.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>28 Composition Principles</h3>
+                        <p>Learn the visual language of photography, from Rule of Thirds to leading lines and negative space.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Interactive Tools</h3>
+                        <p>Experiment with exposure settings, get personalized camera recommendations, and test your knowledge.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Track Your Journey</h3>
+                        <p>Monitor progress, document practice sessions, and complete challenges to build real skills.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Library Section -->
+        <section id="library" class="section">
+            <div class="container">
+                <div class="hero">
+                    <p class="hero-label">THE LEARNING LIBRARY</p>
+                    <h2 class="hero-title">Build your <span class="highlight">photographer's eye</span>.</h2>
+                    <p class="hero-text">
+                        Learn the fundamentals, then put them to work. Start with one concept and practise it in the world around you.
+                    </p>
+                </div>
+
+                <div class="filters">
+                    <button class="filter-btn active" data-category="all">All lessons</button>
+                    <button class="filter-btn" data-category="Exposure">Exposure</button>
+                    <button class="filter-btn" data-category="Composition">Composition</button>
+                    <button class="filter-btn" data-category="Light & Colour">Light & Colour</button>
+                    <button class="filter-btn" data-category="Lenses">Lenses</button>
+                    <button class="filter-btn" data-category="Camera Skills">Camera Skills</button>
+                    <button class="filter-btn" data-category="Photography Genres">Photography Genres</button>
+                    <button class="filter-btn" data-category="Advanced Techniques">Advanced Techniques</button>
+                </div>
+
+                <div id="lessons-container" class="cards-grid">
+                    <div class="loading">Loading lessons...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Composition Academy Section -->
+        <section id="composition" class="section">
+            <div class="container">
+                <div class="hero">
+                    <p class="hero-label">COMPOSITION ACADEMY</p>
+                    <h2 class="hero-title">The visual <span class="highlight">language</span> of photography.</h2>
+                    <p class="hero-text">
+                        Composition principles are creative guides, not rigid rules. Learn when to use them and when to break them.
+                    </p>
+                </div>
+
+                <div id="composition-container" class="cards-grid">
+                    <div class="loading">Loading composition principles...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exposure Simulator Section -->
+        <section id="simulator" class="section">
+            <div class="container">
+                <div class="hero">
+                    <p class="hero-label">EXPOSURE SIMULATOR</p>
+                    <h2 class="hero-title">Understand the <span class="highlight">exposure triangle</span>.</h2>
+                    <p class="hero-text">
+                        Experiment with aperture, shutter speed, and ISO to see how they affect your exposure and creative choices.
+                    </p>
+                </div>
+
+                <div class="simulator">
+                    <div class="simulator-controls">
+                        <div class="control-group">
+                            <label for="aperture-select">Aperture (f-stop)</label>
+                            <select id="aperture-select" class="control-input">
+                                <option value="1.4">f/1.4</option>
+                                <option value="2">f/2</option>
+                                <option value="2.8">f/2.8</option>
+                                <option value="4">f/4</option>
+                                <option value="5.6" selected>f/5.6</option>
+                                <option value="8">f/8</option>
+                                <option value="11">f/11</option>
+                                <option value="16">f/16</option>
+                                <option value="22">f/22</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="shutter-select">Shutter Speed</label>
+                            <select id="shutter-select" class="control-input">
+                                <option value="0.00025">1/4000s</option>
+                                <option value="0.0005">1/2000s</option>
+                                <option value="0.001">1/1000s</option>
+                                <option value="0.002">1/500s</option>
+                                <option value="0.004">1/250s</option>
+                                <option value="0.008" selected>1/125s</option>
+                                <option value="0.0167">1/60s</option>
+                                <option value="0.0333">1/30s</option>
+                                <option value="0.125">1/8s</option>
+                                <option value="0.5">1/2s</option>
+                                <option value="1">1s</option>
+                                <option value="5">5s</option>
+                                <option value="30">30s</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="iso-select">ISO</label>
+                            <select id="iso-select" class="control-input">
+                                <option value="100">ISO 100</option>
+                                <option value="200">ISO 200</option>
+                                <option value="400" selected>ISO 400</option>
+                                <option value="800">ISO 800</option>
+                                <option value="1600">ISO 1600</option>
+                                <option value="3200">ISO 3200</option>
+                                <option value="6400">ISO 6400</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="lighting-select">Lighting Conditions</label>
+                            <select id="lighting-select" class="control-input">
+                                <option value="bright">Bright daylight</option>
+                                <option value="moderate" selected>Moderate light</option>
+                                <option value="low_light">Low light</option>
+                                <option value="night">Night</option>
+                            </select>
+                        </div>
+
+                        <button class="btn-primary" onclick="calculateExposure()">Calculate Exposure</button>
+                    </div>
+
+                    <div id="exposure-result" class="result-panel"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Advisor Section -->
+        <section id="advisor" class="section">
+            <div class="container">
+                <div class="hero">
+                    <p class="hero-label">CAMERA SETTINGS ADVISOR</p>
+                    <h2 class="hero-title">Get personalized <span class="highlight">recommendations</span>.</h2>
+                    <p class="hero-text">
+                        Tell us what you're photographing, and we'll suggest optimal camera settings to start with.
+                    </p>
+                </div>
+
+                <div class="advisor">
+                    <div class="advisor-controls">
+                        <div class="control-group">
+                            <label for="subject-select">Photography Subject</label>
+                            <select id="subject-select" class="control-input">
+                                <option value="portrait">Portrait</option>
+                                <option value="landscape">Landscape</option>
+                                <option value="street">Street</option>
+                                <option value="sports">Sports/Action</option>
+                                <option value="macro">Macro</option>
+                                <option value="night">Night Photography</option>
+                                <option value="everyday" selected>Everyday Photography</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="lighting2-select">Lighting</label>
+                            <select id="lighting2-select" class="control-input">
+                                <option value="bright" selected>Bright daylight</option>
+                                <option value="cloudy">Cloudy</option>
+                                <option value="indoor">Indoor</option>
+                                <option value="low_light">Low light</option>
+                                <option value="night">Night</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="effect-select">Desired Effect</label>
+                            <select id="effect-select" class="control-input">
+                                <option value="background_blur">Background blur</option>
+                                <option value="sharp_scene">Sharp throughout</option>
+                                <option value="freeze_motion">Freeze motion</option>
+                                <option value="motion_blur">Motion blur</option>
+                                <option value="balanced" selected>Balanced exposure</option>
+                            </select>
+                        </div>
+
+                        <button class="btn-primary" onclick="getAdvice()">Get Recommendations</button>
+                    </div>
+
+                    <div id="advice-result" class="result-panel"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="section">
+            <div class="container">
+                <div class="hero">
+                    <p class="hero-label">PHOTOGRAPHY QUIZ</p>
+                    <h2 class="hero-title">Test your <span class="highlight">knowledge</span>.</h2>
+                    <p class="hero-text">
+                        Challenge yourself with questions about exposure, composition, and camera techniques.
+                    </p>
+                </div>
+
+                <div id="quiz-container">
+                    <button class="btn-primary" onclick="startQuiz()">Start Quiz</button>
+                </div>
+
+                <div id="quiz-result" style="display: none;"></div>
+            </div>
+        </section>
+
+        <!-- Progress Section -->
+        <section id="progress" class="section">
+            <div class="container">
+                <div class="hero">
+                    <p class="hero-label">YOUR PROGRESS</p>
+                    <h2 class="hero-title">Track your <span class="highlight">learning journey</span>.</h2>
+                </div>
+
+                <div id="progress-stats" class="stats-grid">
+                    <div class="loading">Loading progress...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Journal Section -->
+        <section id="journal" class="section">
+            <div class="container">
+                <div class="hero">
+                    <p class="hero-label">PHOTO JOURNAL</p>
+                    <h2 class="hero-title">Document your <span class="highlight">practice</span>.</h2>
+                    <p class="hero-text">
+                        Record your photography sessions, settings used, lessons learned, and goals for improvement.
+                    </p>
+                </div>
+
+                <button class="btn-primary" onclick="showJournalForm()">New Journal Entry</button>
+
+                <div id="journal-form" class="journal-form" style="display: none;">
+                    <h3>New Practice Session</h3>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="journal-date" class="form-input" />
+                    </div>
+                    <div class="form-group">
+                        <label>What did you photograph?</label>
+                        <input type="text" id="journal-subject" class="form-input" placeholder="e.g., Portrait of friend, Sunset landscape" />
+                    </div>
+                    <div class="form-group">
+                        <label>What concept did you practice?</label>
+                        <input type="text" id="journal-concept" class="form-input" placeholder="e.g., Rule of Thirds, Shallow depth of field" />
+                    </div>
+                    <div class="form-group">
+                        <label>Camera settings used</label>
+                        <input type="text" id="journal-settings" class="form-input" placeholder="e.g., f/2.8, 1/250s, ISO 400" />
+                    </div>
+                    <div class="form-group">
+                        <label>What went well?</label>
+                        <textarea id="journal-well" class="form-textarea" placeholder="Describe your successes..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>What could be improved?</label>
+                        <textarea id="journal-improve" class="form-textarea" placeholder="Areas to work on..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Next practice goal</label>
+                        <textarea id="journal-goal" class="form-textarea" placeholder="What will you focus on next?"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn-primary" onclick="saveJournalEntry()">Save Entry</button>
+                        <button class="btn-secondary" onclick="hideJournalForm()">Cancel</button>
+                    </div>
+                </div>
+
+                <div id="journal-entries" class="journal-entries">
+                    <div class="loading">Loading journal entries...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Challenges Section -->
+        <section id="challenges" class="section">
+            <div class="container">
+                <div class="hero">
+                    <p class="hero-label">PRACTICAL CHALLENGES</p>
+                    <h2 class="hero-title">Apply what you've <span class="highlight">learned</span>.</h2>
+                    <p class="hero-text">
+                        Complete these hands-on photography challenges to build real-world skills and confidence.
+                    </p>
+                </div>
+
+                <div id="challenges-container" class="cards-grid">
+                    <div class="loading">Loading challenges...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 PhotoMentor 2.0 — Photography Learning Assistant</p>
+            <p>Built with HTML, CSS, JavaScript, Flask, and C++</p>
+        </div>
+    </footer>
+
+    <!-- Lesson Detail Modal -->
+    <div id="lesson-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeLessonModal()">&times;</span>
+            <div id="lesson-detail"></div>
+        </div>
+    </div>
+
+    <!-- Composition Detail Modal -->
+    <div id="composition-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeCompositionModal()">&times;</span>
+            <div id="composition-detail"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
